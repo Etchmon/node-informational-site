@@ -1,0 +1,22 @@
+{
+  "name": "informational-site",
+  "version": "1.0.0",
+  "description": "A basic informational site using Node.js to serve html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Etchmon/node-informational-site.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "James Etchells",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Etchmon/node-informational-site/issues"
+  },
+  "homepage": "https://github.com/Etchmon/node-informational-site#readme"
+}
