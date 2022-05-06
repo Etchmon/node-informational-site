@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "A basic informational site using Node.js to serve html",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index",
+    "dev":"nodemon index"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Etchmon/node-informational-site/issues"
   },
-  "homepage": "https://github.com/Etchmon/node-informational-site#readme"
+  "homepage": "https://github.com/Etchmon/node-informational-site#readme",
+  "dependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
