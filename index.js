@@ -13,6 +13,7 @@ const server = createServer((req, res) => {
     //         }
     //     )
     // }
+    console.log(req.url);
 
     let filePath = path.join(
         './',
@@ -25,7 +26,7 @@ const server = createServer((req, res) => {
             if (err.code === 'ENOENT') {
                 // Page not found
                 fs.readFile(path.join('./', 'public', '404.html'), (err, content) => {
-                    res.writeHead(200, { 'Content-Type': 'text/hmtl' });
+                    res.writeHead(200, { 'Content-Type': 'text/html' });
                     res.end(content, 'utf-8');
                 })
             } else {
