@@ -9,8 +9,34 @@ const server = createServer((req, res) => {
         './',
         'public',
         req.url === '/' ? 'index.html' : req.url
-    )
+    );
 
+    // Extension of file
+    let extname = path.extname(filePath);
+
+    // Initial content type
+    let contenType = 'text/html';
+
+    // Check ext and set content type
+    switch (extname) {
+        case '.js':
+            contenType = 'text/javascript';
+            break;
+        case '.css':
+            contenType = 'text/css';
+            break;
+        case '.json':
+            contenType = 'application/json';
+            break;
+        case '.png':
+            contenType = 'image/png';
+            break;
+        case '.jpg':
+            contenType = 'image/jpg';
+            break;
+    }
+
+    // Read file
     fs.readFile(filePath, (err, content) => {
         if (err) {
             if (err.code === 'ENOENT') {
