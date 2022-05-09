@@ -1,12 +1,17 @@
 import { createServer } from 'http';
 import path from 'path';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+console.log('directory-name 👉️', __dirname);
 
 const server = createServer((req, res) => {
 
 
     let filePath = path.join(
-        './',
+        __dirname,
         'public',
         req.url === '/' ? 'index.html' : req.url
     );
@@ -15,24 +20,27 @@ const server = createServer((req, res) => {
     let extname = path.extname(filePath);
 
     // Initial content type
-    let contenType = 'text/html';
+    let contentType = 'text/html';
 
     // Check ext and set content type
     switch (extname) {
         case '.js':
-            contenType = 'text/javascript';
+            contentType = 'text/javascript';
             break;
         case '.css':
-            contenType = 'text/css';
+            contentType = 'text/css';
             break;
         case '.json':
-            contenType = 'application/json';
+            contentType = 'application/json';
             break;
         case '.png':
-            contenType = 'image/png';
+            contentType = 'image/png';
             break;
         case '.jpg':
-            contenType = 'image/jpg';
+            contentType = 'image/jpg';
+            break;
+        case '.jpeg':
+            contentType = 'image/jpeg';
             break;
     }
 
@@ -41,7 +49,7 @@ const server = createServer((req, res) => {
         if (err) {
             if (err.code === 'ENOENT') {
                 // Page not found
-                fs.readFile(path.join('./', 'public', '404.html'), (err, content) => {
+                fs.readFile(path.join(__dirname, 'public', '404.html'), (err, content) => {
                     res.writeHead(200, { 'Content-Type': 'text/html' });
                     res.end(content, 'utf-8');
                 })
@@ -52,11 +60,13 @@ const server = createServer((req, res) => {
             }
         } else {
             // Success
-            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.writeHead(200, { 'Content-Type': contentType });
             res.end(content, 'utf-8');
         }
     })
 });
+
+
 
 const PORT = process.env.PORT || 5000;
 
